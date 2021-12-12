@@ -10,6 +10,10 @@
   box-sizing: border-box;
   border-radius: 2px;
   transition: 0.3s;
+  background-image: url(../../../vendor/images/add-button-image.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__add-button:hover {
@@ -22,5 +26,6 @@
     margin-left: auto;
     margin-right: auto;
     width: 282px;
+    background-size: 16px;
   }
 }

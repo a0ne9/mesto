@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body class="page">
+  <header class="header">
+    <div class="header__logo"></div>
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img class="profile__image" src="./vendor/images/avatar.jpg" alt="Аватарка">
+      <div class="profile__info">
+        <p class="profile__name">Жак-Ив Кусто</p>
+        <button class="profile__edit-button"></button>
+        <p class="profile__caption">Исследователь океана</p>
+      </div>
+      <button class="profile__add-button"><div class="profile__button-image"></div></button>
+    </section>
+    <section class="cards">
+      <ul class="cards__list">
+        <li class="cards__list-item">
+          <img class="cards__image" src="./vendor/images/kamchatka.jpg" alt="Камчатка">
+          <div class="cards__caption">
+            <h2 class="cards__title">Полуостров Камчатка</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__list-item">
+          <img class="cards__image" src="./vendor/images/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
+          <div class="cards__caption">
+            <h2 class="cards__title">Карачаево-Черкессия</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__list-item">
+          <img class="cards__image" src="./vendor/images/pushkin.jpg" alt="Пушкин">
+          <div class="cards__caption">
+            <h2 class="cards__title">Город Пушкин</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__list-item">
+          <img class="cards__image" src="./vendor/images/karelia.jpg" alt="Карелия">
+          <div class="cards__caption">
+            <h2 class="cards__title">Карелия</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__list-item">
+          <img class="cards__image" src="./vendor/images/ladoga.jpg" alt="Ладога">
+          <div class="cards__caption">
+            <h2 class="cards__title">Ладожское озеро</h2>
+            <button class="cards__like-button"></button>
+          </div>
+        </li>
+        <li class="cards__list-item">
+          <img class="cards__image" src="./vendor/images/ural.jpg" alt="Урал">
+          <div class="cards__caption">
+          <h2 class="cards__title">Урал</h2>
+          <button class="cards__like-button"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form">
+          <input type="text" class="popup__name" placeholder="Имя" value="Жак-Ив Кусто">
+          <input type="text" class="popup__job" placeholder="О себе" value="Исследователь океана">
+          <button type="submit" class="popup__button">Сохранить</button>
+        </form>
+        <button class="popup__close-button"></button>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
+  </footer>
+  <script src="./script.js"></script>
+</body>
+</html>

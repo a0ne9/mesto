@@ -21,50 +21,8 @@
       <button class="profile__add-button" type="button"></button>
     </section>
     <section class="cards">
-      <ul class="cards__list">
-        <li class="cards__list-item">
-          <img class="cards__image" src="./vendor/images/kamchatka.jpg" alt="Камчатка">
-          <div class="cards__caption">
-            <h2 class="cards__title">Полуостров Камчатка</h2>
-            <button class="cards__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="cards__list-item">
-          <img class="cards__image" src="./vendor/images/karachaevo-cherkessia.jpg" alt="Карачаево-Черкессия">
-          <div class="cards__caption">
-            <h2 class="cards__title">Карачаево-Черкессия</h2>
-            <button class="cards__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="cards__list-item">
-          <img class="cards__image" src="./vendor/images/pushkin.jpg" alt="Пушкин">
-          <div class="cards__caption">
-            <h2 class="cards__title">Город Пушкин</h2>
-            <button class="cards__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="cards__list-item">
-          <img class="cards__image" src="./vendor/images/karelia.jpg" alt="Карелия">
-          <div class="cards__caption">
-            <h2 class="cards__title">Карелия</h2>
-            <button class="cards__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="cards__list-item">
-          <img class="cards__image" src="./vendor/images/ladoga.jpg" alt="Ладога">
-          <div class="cards__caption">
-            <h2 class="cards__title">Ладожское озеро</h2>
-            <button class="cards__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="cards__list-item">
-          <img class="cards__image" src="./vendor/images/ural.jpg" alt="Урал">
-          <div class="cards__caption">
-          <h2 class="cards__title">Урал</h2>
-          <button class="cards__like-button" type="button"></button>
-          </div>
-        </li>
-      </ul>
+      <div class="cards__list"> 
+      </div>
     </section>
     <div class="popup">
       <div class="popup__container">
@@ -77,10 +35,38 @@
         </form>
       </div>
     </div>
+    <div class="popup-card">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup-card__form" name="profile-changer">
+          <input name="name" type="text" class="popup__input" placeholder="Название" value="" id="place-name-field">
+          <input name="link" type="text" class="popup__input" placeholder="Ссылка на картинку" value="" id="link-field">
+          <button type="submit" class="popup__button">Сохранить</button>
+          <button class="popup-card__close-button" type="button"></button>
+        </form>
+      </div>
+    </div>
+    <div class="popup-image">
+      <div class="popup-image__image-container">
+        <img class="popup-image__img" alt="" src="">
+        <h2 class="popup-image__caption"></h2>
+        <button type="button" class="popup-image__close-button"></button>
+      </div>
+    </div>
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
+  <template id="tmpl">
+    <div class="cards__list-item">
+      <button class="cards__delete-button" type="button"></button>
+      <img class="cards__image" alt=" " src=" ">
+      <div class="cards__caption">
+        <h2 class="cards__title"></h2>
+        <button class="cards__like-button" type="button"></button>
+      </div>
+    </div>
+  </template>
   <script src="./scripts/script.js"></script>
 </body>
 </html>

@@ -7,7 +7,9 @@
   height: 32px;
   border: 0;
   transition: 0.3s;
-  position: relative;
+  position: absolute;
+  top: -40px;
+  right: -40px;
 }
 
 .popup-image__close-button:hover {

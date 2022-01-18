@@ -8,8 +8,6 @@
   border: 0;
   transition: 0.3s;
   position: relative;
-  bottom: 101%;
-  right: 101%;
 }
 
 .popup-image__close-button:hover {

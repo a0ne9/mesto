@@ -5,17 +5,17 @@ let popupCard = document.querySelector('.popup_type_card');
 let closeButton = document.querySelector('.popup__close-button');
 let closeCardButton = document.querySelector('.popup__card-close-button');
 let formElement = document.querySelector('.popup__form');
-let cardFormElement = document.querySelector('.popup-card__form');
+let cardFormElement = document.querySelector('.popup__card-form');
 let nameInput = document.querySelector('#name-field');
 let jobInput = document.querySelector('#job-field');
 let placeNameInput = document.querySelector('#place-name-field');
 let linkInput = document.querySelector('#link-field');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__caption');
-let popupImageCaption = document.querySelector('.popup-image__caption');
-const popupImageImg = document.querySelector('.popup-image__img');
+let popupImageCaption = document.querySelector('.popup__caption');
+const popupImageImg = document.querySelector('.popup__img');
 const popupImage = document.querySelector('.popup_type_image');
-let popupImageCloseButton =document.querySelector('.popup-image__close-button');
+let popupImageCloseButton =document.querySelector('.popup__image-close-button');
 const cardTemplate = document.querySelector('#tmpl').content;
 
 

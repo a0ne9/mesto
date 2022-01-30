@@ -6,6 +6,7 @@
   grid-template-columns: 282px 282px 282px;
   grid-column-gap: 17px;
   grid-row-gap: 20px;
+  
 }
 
 @media screen and (max-width: 900px) {

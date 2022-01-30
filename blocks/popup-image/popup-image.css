@@ -1,12 +1,3 @@
 .popup-image {
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  display: flex;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.3s linear;
+
 }

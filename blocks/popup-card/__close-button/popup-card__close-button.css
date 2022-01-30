@@ -1,4 +1,4 @@
-.popup-card__close-button {
+.popup__card-close-button {
   margin: 0;
   padding: 0;
   position: relative;
@@ -14,13 +14,13 @@
   transition: 0.3s;
 }
 
-.popup-card__close-button:hover {
+.popup__card-close-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
   
 @media screen and (max-width: 700px) {
-  .popup-card__close-button {
+  .popup__card-close-button {
     top: -338px;
     left: 262px;
     width: 20px;

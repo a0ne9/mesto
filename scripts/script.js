@@ -1,25 +1,25 @@
-let openButton = document.querySelector('.profile__edit-button');
-let openCardButton = document.querySelector('.profile__add-button');
-let popupStatus = document.querySelector('.popup_type_profile');
-let popupCard = document.querySelector('.popup_type_card');
-let closeButton = document.querySelector('.popup__close-button');
-let closeCardButton = document.querySelector('.popup__card-close-button');
-let formElement = document.querySelector('.popup__form');
-let cardFormElement = document.querySelector('.popup__card-form');
-let nameInput = document.querySelector('#name-field');
-let jobInput = document.querySelector('#job-field');
-let placeNameInput = document.querySelector('#place-name-field');
-let linkInput = document.querySelector('#link-field');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__caption');
-let popupImageCaption = document.querySelector('.popup__caption');
+const openButton = document.querySelector('.profile__edit-button');
+const openCardButton = document.querySelector('.profile__add-button');
+const popupStatus = document.querySelector('.popup_type_profile');
+const popupCard = document.querySelector('.popup_type_card');
+const closeButton = document.querySelector('.popup__close-button');
+const closeCardButton = document.querySelector('.popup__card-close-button');
+const formElement = document.querySelector('.popup__form');
+const cardFormElement = document.querySelector('.popup__card-form');
+const nameInput = document.querySelector('#name-field');
+const jobInput = document.querySelector('#job-field');
+const placeNameInput = document.querySelector('#place-name-field');
+const linkInput = document.querySelector('#link-field');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__caption');
+const popupImageCaption = document.querySelector('.popup__caption');
 const popupImageImg = document.querySelector('.popup__img');
 const popupImage = document.querySelector('.popup_type_image');
-let popupImageCloseButton =document.querySelector('.popup__image-close-button');
+const popupImageCloseButton =document.querySelector('.popup__image-close-button');
 const cardTemplate = document.querySelector('#tmpl').content;
 
 
-let cardsList = document.querySelector('.cards__list');
+const cardsList = document.querySelector('.cards__list');
 const initialCards = [
   {
     name: 'Архыз',
@@ -51,9 +51,10 @@ const initialCards = [
 const createCard = (item) => {
   const cardElement = cardTemplate.querySelector('.cards__list-item').cloneNode(true);
   cardElement.querySelector('.cards__title').textContent = item.name;
-  cardElement.querySelector('.cards__image').alt = item.name;
-  cardElement.querySelector('.cards__image').src = item.link;
-  cardElement.querySelector('.cards__image').addEventListener('click', () => {
+  const cardImage = cardElement.querySelector('.cards__image');
+  cardImage.alt = item.name;
+  cardImage.src = item.link;
+  cardImage.addEventListener('click', () => {
     openPopup(popupImage);
     popupImageCaption.textContent = item.name;
     popupImageImg.src = item.link;

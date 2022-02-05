@@ -84,8 +84,14 @@ function submitCardFormHandler (evt) {
   const placeLink = linkInput.value;
   renderCard(placeNameValue, placeLink);
   closePopup(popupCard);
+  disableButton();
 };
 
+function disableButton() {
+  const button = document.querySelector('#card-button');
+  button.classList.add('popup__button_disabled');
+  button.disabled = true;
+};
 
 
 function openPopup(popup) {
@@ -96,7 +102,6 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', escClose);
-  clearErrors();
 };
 
 function submitFormHandler (evt) {
@@ -124,7 +129,7 @@ function escClose(evt) {
 
 popups.forEach((element)=> {
   element.addEventListener('click', (evt) => {
-    evt.target.classList.remove('popup_opened');
+    closePopup(evt.target);
   });
 });
 
@@ -136,6 +141,7 @@ profileFormElement.addEventListener('submit', submitFormHandler);
 openButton.addEventListener('click', () => {
   openPopup(popupStatus);
   getName();
+  clearErrors();
 });
 closeButton.addEventListener('click', () => {
   closePopup(popupStatus);
@@ -143,6 +149,7 @@ closeButton.addEventListener('click', () => {
 openCardButton.addEventListener('click', () => {
   openPopup(popupCard)
   clearForm();
+  clearErrors();
 });
 
 closeCardButton.addEventListener('click', () => {

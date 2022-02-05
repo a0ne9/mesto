@@ -28,7 +28,7 @@ const toggleButtonState = (inputsList, buttonElement, inactiveButtonClass) => {
       buttonElement.classList.add(inactiveButtonClass);
       buttonElement.setAttribute('disabled', true);
     } else {
-      buttonElement.classList.remove('popup__button_disabled');
+      buttonElement.classList.remove(inactiveButtonClass);
       buttonElement.removeAttribute('disabled');
     }
 }; 

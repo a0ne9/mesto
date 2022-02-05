@@ -41,9 +41,11 @@
   <div class="popup popup_type_profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="profile-changer">
-        <input name="name" type="text" class="popup__input" placeholder="Имя" value=" " id="name-field">
-        <input name="job" type="text" class="popup__input" placeholder="О себе" value=" " id="job-field">
+      <form class="popup__form" name="profile-changer" novalidate>
+        <input name="name" type="text" class="popup__input" placeholder="Имя" value=" " id="name-field" minlength="2" maxlength="40" required>
+        <span class="popup__input-error name-field-error"></span>
+        <input name="job" type="text" class="popup__input" placeholder="О себе" value=" " id="job-field" minlength="2" maxlength="200" required>
+        <span class="popup__input-error job-field-error"></span>
         <button type="submit" class="popup__button">Сохранить</button>
         <button class="popup__close-button" type="button"></button>
       </form>
@@ -52,10 +54,12 @@
   <div class="popup popup_type_card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__card-form" name="card-adder">
-        <input name="name" type="text" class="popup__input" placeholder="Название" value="" id="place-name-field">
-        <input name="link" type="text" class="popup__input" placeholder="Ссылка на картинку" value="" id="link-field">
-        <button type="submit" class="popup__button">Сохранить</button>
+      <form class="popup__form popup__form_type_card" name="card-adder" novalidate>
+        <input name="title" type="text" class="popup__input" placeholder="Название" value="" id="title-field" minlength="2" maxlength="30" required>
+        <span class="popup__input-error title-field-error"></span>
+        <input name="link" type="url" class="popup__input" placeholder="Ссылка на картинку" value="" id="link-field" required>
+        <span class="popup__input-error link-field-error"></span>
+        <button type="submit" class="popup__button">Создать</button>
         <button class="popup__card-close-button" type="button"></button>
       </form>
     </div>
@@ -68,5 +72,6 @@
     </div>
   </div>
   <script src="./scripts/script.js"></script>
-</body>
+  <script src="./scripts/validate.js"></script>
+  </body>
 </html>

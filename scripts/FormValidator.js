@@ -26,7 +26,7 @@ export class FormValidator {
     } else {
         this._enableButton();
     }
-}; 
+  }; 
 
   _isValid( inputElement) {
     if (!inputElement.validity.valid) {
@@ -34,6 +34,25 @@ export class FormValidator {
     } else {
       this._hideInputError(inputElement);
     }
+  };
+
+  clearErrors(popup) {
+    const spans = popup.querySelectorAll('.popup__error_visible');
+    spans.forEach((element) => {
+      element.textContent = ""
+      element.classList.remove('popup__error_visible');
+    });
+    const inputs = popup.querySelectorAll('.popup__input_type_error');
+    inputs.forEach((element) => {
+      element.classList.remove('popup__input_type_error');
+    });
+  };
+
+  clearForm(form) {
+    const inputs = form.querySelectorAll('.popup__input');
+    inputs.forEach((input) => {
+      input.value = ""
+    });
   };
 
   _hasInvalidInput = () => {

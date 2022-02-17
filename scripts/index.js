@@ -42,8 +42,8 @@ function submitCardFormHandler (evt) {
   const placeLink = linkInput.value;
   renderCard({name: placeNameValue, link: placeLink}, cardsList);
   closePopup(popupCard);
-  const del = new FormValidator(config, cardForm);
-  del.disableButton();
+  const formValidationEdditor = new FormValidator(config, cardForm);
+  formValidationEdditor.disableButton();
 };
 
 
@@ -58,19 +58,6 @@ function getName() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 };
-
-function clearForm() {
-  placeNameInput.value = '';
-  linkInput.value = '';
-};
-
-const clearErrors = () => {
-  const spans = Array.from(document.querySelectorAll('.popup__error_visible'));
-  spans.forEach((element) => {
-    element.textContent = ""
-  });
-};
-
 
 
 popups.forEach((element)=> {
@@ -89,15 +76,19 @@ profileFormElement.addEventListener('submit', submitFormHandler);
 openButton.addEventListener('click', () => {
   openPopup(popupStatus);
   getName();
-  clearErrors();
+  const formValidationEdditor = new FormValidator(config, profileForm);
+  formValidationEdditor.clearErrors(popupStatus);
 });
 closeButton.addEventListener('click', () => {
   closePopup(popupStatus);
 });
 openCardButton.addEventListener('click', () => {
   openPopup(popupCard)
-  clearForm();
-  clearErrors();
+  
+  const formValidationEdditor = new FormValidator(config, profileForm);
+  formValidationEdditor.clearErrors(popupCard);
+  formValidationEdditor.clearForm(cardForm);
+  
 });
 
 closeCardButton.addEventListener('click', () => {

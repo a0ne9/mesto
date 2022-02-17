@@ -31,7 +31,7 @@ export class Card {
 
   _handleImagePopup() {
     openPopup(popupImage);
-    popupImageCaption.textContent = this._cardImage.alt
+    popupImageCaption.textContent = this._data.name;
     popupImageImg.src = this._data.link;
     popupImageImg.alt = this._data.name;
   };

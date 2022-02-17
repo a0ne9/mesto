@@ -16,7 +16,6 @@ const placeNameInput = document.querySelector('#title-field');
 const linkInput = document.querySelector('#link-field');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__caption');
-const cardTemplate = document.querySelector('#tmpl').content;
 const popups = document.querySelectorAll('.popup');
 const cardsList = document.querySelector('.cards__list');
 const profileForm = popupStatus.querySelector('.popup__form_type_profile');
@@ -43,7 +42,8 @@ function submitCardFormHandler (evt) {
   const placeLink = linkInput.value;
   renderCard({name: placeNameValue, link: placeLink}, cardsList);
   closePopup(popupCard);
-  disableButton();
+  const del = new FormValidator(config, cardForm);
+  del.disableButton();
 };
 
 
@@ -83,6 +83,8 @@ popups.forEach((element)=> {
 popupImageCloseButton.addEventListener('click', () => {
   closePopup(popupImage);
 });
+
+
 profileFormElement.addEventListener('submit', submitFormHandler); 
 openButton.addEventListener('click', () => {
   openPopup(popupStatus);

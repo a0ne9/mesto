@@ -10,7 +10,9 @@ export class Card {
   _setListeners() {
     this._likeButton.addEventListener('click', this._handleLikeIcon);
     this._deleteButton.addEventListener('click', this._handleDeleteButton);
-    this._cardImage.addEventListener('click', this._handleImagePopup);
+    this._cardImage.addEventListener('click', () => {
+        this._handleImagePopup();
+    });
   };
 
   
@@ -27,10 +29,11 @@ export class Card {
     this._cardElement.querySelector('.cards__title').textContent = this._data.name;
     this._cardImage.alt = this._data.name;
     this._cardImage.src = this._data.link;
-  }
+};
 
   _handleImagePopup() {
     openPopup(popupImage);
+    console.log(this);
     popupImageCaption.textContent = this._data.name;
     popupImageImg.src = this._data.link;
     popupImageImg.alt = this._data.name;

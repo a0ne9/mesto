@@ -28,22 +28,20 @@ cardFormValidator.enableValidation();
 
 
 
-
-
-const renderCard = (data, cardsList) => {
+function createCard(data) {
   const addedCard = new Card(data, cardTemplateSelector);
-  const cardElement = addedCard.createCard();
-  cardsList.prepend(cardElement);
+  const cardElement = addedCard.getCardElement();
+  return cardElement;
 };
+
 
 function submitCardFormHandler (evt) {
   evt.preventDefault(); 
   const placeNameValue = placeNameInput.value;
   const placeLink = linkInput.value;
-  renderCard({name: placeNameValue, link: placeLink}, cardsList);
+  cardsList.prepend(createCard({name: placeNameValue, link: placeLink}))
   closePopup(popupCard);
-  const formValidationEdditor = new FormValidator(config, cardForm);
-  formValidationEdditor.disableButton();
+  cardFormValidator.disableButton();
 };
 
 
@@ -76,18 +74,15 @@ profileFormElement.addEventListener('submit', submitFormHandler);
 openButton.addEventListener('click', () => {
   openPopup(popupStatus);
   getName();
-  const formValidationEdditor = new FormValidator(config, profileForm);
-  formValidationEdditor.clearErrors(popupStatus);
+  profileFormValidator.clearErrors(popupStatus);
 });
 closeButton.addEventListener('click', () => {
   closePopup(popupStatus);
 });
 openCardButton.addEventListener('click', () => {
   openPopup(popupCard)
-  
-  const formValidationEdditor = new FormValidator(config, profileForm);
-  formValidationEdditor.clearErrors(popupCard);
-  formValidationEdditor.clearForm(cardForm);
+  cardFormValidator.clearErrors(popupCard);
+  cardFormValidator.clearForm(cardForm);
   
 });
 
@@ -96,8 +91,8 @@ closeCardButton.addEventListener('click', () => {
 });
 cardFormElement.addEventListener('submit', submitCardFormHandler);
 
-initialCards.forEach((data) => {
-  renderCard(data, cardsList);
+initialCards.forEach((data) => { 
+  cardsList.prepend(createCard(data))
 });
 
 

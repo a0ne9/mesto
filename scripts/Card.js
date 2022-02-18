@@ -39,7 +39,7 @@ export class Card {
     popupImageImg.alt = this._data.name;
   };
 
-  createCard () {
+  getCardElement () {
     this._cardElement = this._template.cloneNode(true);
     this._likeButton = this._cardElement.querySelector('.cards__like-button');
     this._deleteButton = this._cardElement.querySelector('.cards__delete-button');

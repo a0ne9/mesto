@@ -48,13 +48,6 @@ export class FormValidator {
     });
   };
 
-  clearForm(form) {
-    const inputs = form.querySelectorAll('.popup__input');
-    inputs.forEach((input) => {
-      input.value = ""
-    });
-  };
-
   _hasInvalidInput = () => {
     return this._inputsList.some((inputElement) => {
       return !inputElement.validity.valid;

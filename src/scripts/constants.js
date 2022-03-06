@@ -33,8 +33,3 @@ export const config = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 };
-
-export const popupImageImg = document.querySelector('.popup__img');
-export const popupImage = document.querySelector('.popup_type_image');
-export const popupImageCloseButton =document.querySelector('.popup__image-close-button');
-export const popupImageCaption = document.querySelector('.popup__caption');

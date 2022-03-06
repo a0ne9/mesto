@@ -27,7 +27,7 @@ module.exports = {
         exclude: '/node_modules'
       },
       {
-        test: /\.(png|svg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpeg|jpg|gif)$/i,
         type: "asset/resource",
         generator: {
           filename: 'images/[name].[hash][ext]',

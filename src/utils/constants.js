@@ -1,3 +1,5 @@
+import {FormValidator} from "../components/FormValidator";
+
 export const initialCards = [
     {
       name: 'Архыз',
@@ -33,3 +35,19 @@ export const config = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 };
+
+export const popupProfileSelector = '.popup_type_profile';
+export const openCardButton = document.querySelector('.profile__add-button');
+export const popupStatus = document.querySelector('.popup_type_profile');
+export const popupCard = document.querySelector('.popup_type_card');
+export const profileName = '.profile__name';
+export const openButton = document.querySelector('.profile__edit-button');
+export const profileJob = '.profile__caption';
+export const profileForm = popupStatus.querySelector('.popup__form_type_profile');
+export const cardForm = popupCard.querySelector('.popup__form_type_card');
+export const cardTemplateSelector = '#tmpl';
+export const cardListSelector = '.cards__list';
+export const popupImgSelector = '.popup_type_image';
+export const popupCardSelector = '.popup_type_card';
+export const nameInput = document.querySelector('#name-field');
+export const captionInput = document.querySelector('#job-field');

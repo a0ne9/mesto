@@ -15,8 +15,8 @@ export class FormValidator {
   
   _hideInputError( inputElement) {
     const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(this._settings.InputErrorClass);
-    errorElement.classList.remove(this._settings.ErrorClass);
+    inputElement.classList.remove(this._settings.inputErrorClass);
+    errorElement.classList.remove(this._settings.errorClass);
     errorElement.textContent = '';
   };
 
@@ -36,17 +36,14 @@ export class FormValidator {
     }
   };
 
-  clearErrors(popup) {
-    const spans = popup.querySelectorAll('.popup__error_visible');
-    spans.forEach((element) => {
-      element.textContent = ""
-      element.classList.remove('popup__error_visible');
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputsList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
     });
-    const inputs = popup.querySelectorAll('.popup__input_type_error');
-    inputs.forEach((element) => {
-      element.classList.remove('popup__input_type_error');
-    });
-  };
+
+  }
 
   _hasInvalidInput = () => {
     return this._inputsList.some((inputElement) => {

@@ -10,12 +10,12 @@ export class Popup {
   };
   open() {
     this._popup.classList.add('popup_opened');
-    this.setEventListeners();
+    document.addEventListener('keydown', this._handleEscClose);
   };
 
   close() {
     this._popup.classList.remove('popup_opened');
-    this.removeEventListeners();
+    document.removeEventListener('keydown', this._handleEscClose);
   };
 
   _clickClose =(evt)=> {
@@ -36,11 +36,7 @@ export class Popup {
     this._popup.addEventListener('click', this._clickClose);
     const closeButton  = this._popup.querySelector('.close-button');
     closeButton.addEventListener('click', this._handleButton);
-    document.addEventListener('keydown', this._handleEscClose);
+
   };
 
-  removeEventListeners() {
-    document.removeEventListener('keydown', this._handleEscClose);
-    this._popup.removeEventListener('click', this._clickClose);
-  }
 };

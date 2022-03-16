@@ -51,3 +51,8 @@ export const popupImgSelector = '.popup_type_image';
 export const popupCardSelector = '.popup_type_card';
 export const nameInput = document.querySelector('#name-field');
 export const captionInput = document.querySelector('#job-field');
+export const popupDeleteSelector = '.popup_type_delete';
+export const popupAvatarSelector = '.popup_type_avatar';
+export const avatarSelector = '.profile__image';
+export const profileImage = document.querySelector('.profile__image');
+

@@ -3,3 +3,7 @@
   height: 120px;
   border-radius: 50%;
 }
+.profile__image:hover {
+  opacity: 0.2;
+  cursor: pointer;
+}

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
+  <link rel="stylesheet" href="blocks/cards/__caption/cards__caption.css">
 </head>
 <body class="page">
   <header class="header">
@@ -11,11 +12,13 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__image" src=<%=require("./vendor/images/avatar.jpg")%> alt="Аватарка">
+      <div class="profile__image-container">
+        <img class="profile__image" src=<%=require("./vendor/images/avatar.jpg")%> alt="Аватарка">
+      </div>
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <h1 class="profile__name"></h1>
         <button class="profile__edit-button" type="button"></button>
-        <p class="profile__caption">Исследователь океана</p>
+        <p class="profile__caption"></p>
       </div>
       <button class="profile__add-button" type="button"></button>
     </section>
@@ -33,7 +36,10 @@
       <img class="cards__image" alt=" " src=" ">
       <div class="cards__caption">
         <h2 class="cards__title"></h2>
-        <button class="cards__like-button" type="button"></button>
+        <div class="cards__like-container">
+          <button class="cards__like-button" type="button"></button>
+          <span class="cards__like-counter"></span>
+        </div>
       </div>
     </div>
   </template>
@@ -63,11 +69,31 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_type_delete">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <form class="popup__form popup__form_type_card" name="card-deleter" novalidate>
+        <button type="submit" class="popup__button popup__delete-button">Да</button>
+        <button class="popup__delete-close-button close-button" type="button"></button>
+      </form>
+    </div>
+  </div>
   <div class="popup popup_type_image">
     <div class="popup__image-container">
       <img class="popup__img" alt=" " src=" ">
       <h2 class="popup__caption"></h2>
       <button type="button" class="popup__image-close-button close-button"></button>
+    </div>
+  </div>
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form popup__form_type_card" name="avatar-adder" novalidate>
+        <input name="avatar" type="url" class="popup__input" placeholder="Ссылка на картинку" value="" required>
+        <span class="popup__input-error link-field-error"></span>
+        <button type="submit" class="popup__button">Сохранить</button>
+        <button class="popup__avatar-close-button close-button" type="button"></button>
+      </form>
     </div>
   </div>
   </body>

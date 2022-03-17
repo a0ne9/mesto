@@ -1,5 +1,5 @@
 import { FormValidator } from '../components/FormValidator.js';
-import { config, profileForm, cardForm, captionInput, cardListSelector, cardTemplateSelector, nameInput, openButton, openCardButton, popupCardSelector, popupImgSelector, popupProfileSelector, profileJob, profileName, popupDeleteSelector, popupAvatarSelector, avatarSelector, profileImage} from '../utils/constants.js';
+import { config, captionInput, cardListSelector, cardTemplateSelector, nameInput, openButton, openCardButton, popupCardSelector, popupImgSelector, popupProfileSelector, profileJob, profileName, popupDeleteSelector, popupAvatarSelector, avatarSelector, profileImage, formValidators} from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { Section }  from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -9,7 +9,20 @@ import { api } from '../components/Api';
 import './index.css';
 
 let userId
-api.getProfile()
+
+Promise.all([api.getProfile(), api.getInitialCards()])
+    .then(([userData, cards]) => {
+        userInformation.setUserInfo(userData.name, userData.about, userData.avatar)
+        userId = userData._id;
+        cards.forEach(data => {
+            const card = createCard(data);
+            cardsDefault.addItem(card);
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    });
+/*api.getProfile()
     .then(res =>{
         userInformation.setUserInfo(res.name, res.about, res.avatar)
         userId = res._id;
@@ -20,12 +33,27 @@ api.getInitialCards()
             const card = createCard(data);
             cardsDefault.addItem(card);
         })
-    })
+    })*/
 
-const profileFormValidator = new FormValidator(config, profileForm);
-const cardFormValidator = new FormValidator(config, cardForm);
-profileFormValidator.enableValidation();
-cardFormValidator.enableValidation();
+
+
+
+const enableValidation = (config) => {
+    const formList = Array.from(document.querySelectorAll(config.formSelector))
+    formList.forEach((formElement) => {
+        const validator = new FormValidator(config, formElement)
+        const formName = formElement.getAttribute('name')
+        formValidators[formName] = validator;
+        validator.enableValidation();
+    });
+};
+
+enableValidation(config);
+
+//const profileFormValidator = new FormValidator(config, profileForm);
+//const cardFormValidator = new FormValidator(config, cardForm);
+//profileFormValidator.enableValidation();
+//cardFormValidator.enableValidation();
 
 
 const userInformation = new UserInfo({userNameSelector: profileName, userCaptionSelector: profileJob, userAvatarSelector: avatarSelector})
@@ -37,9 +65,15 @@ const profileFormPopup = new PopupWithForm(popupProfileSelector, {
     api.editProfile(values.name, values.caption)
         .then(res => {
             userInformation.setUserInfo(values.name, values.caption, res.avatar);
-        });
+            profileFormPopup.close();
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(() =>{
+            profileFormPopup.renderLoading(false);
+        })
     profileFormPopup.renderLoading(true);
-    profileFormPopup.close();
   }
 })
 profileFormPopup.setEventListeners();
@@ -47,22 +81,19 @@ profileFormPopup.setEventListeners();
 
 openButton.addEventListener('click', ()=> {
   profileFormPopup.open();
-  profileFormPopup.renderLoading(false);
   const info = userInformation.getUserInfo();
   nameInput.value = info.name;
   captionInput.value = info.caption;
-
-  profileFormValidator.resetValidation();
-
+  formValidators['profile-changer'].resetValidation();
 });
 
 
 
 
 openCardButton.addEventListener('click', () => {
-  cardFormValidator.resetValidation();
+    formValidators['card-adder'].resetValidation();
   cardFormPopup.open();
-  cardFormPopup.renderLoading(false);
+  formValidators['card-adder'].disableButton();
 });
 
 const cardFormPopup = new PopupWithForm (
@@ -73,13 +104,19 @@ const cardFormPopup = new PopupWithForm (
           .then(res => {
               const newCard = createCard(res, cardTemplateSelector);
               cardsDefault.addItem(newCard);
-          });
+              cardFormPopup.close();
+          })
+          .catch(err => {
+              console.log(err);
+          })
+          .finally(() => {
+              cardFormPopup.renderLoading(false);
+          })
       cardFormPopup.renderLoading(true);
-      cardFormPopup.close();
-      cardFormValidator.disableButton();
+
+
    }
   });
-
 cardFormPopup.setEventListeners();
 
 
@@ -97,28 +134,30 @@ const avatarPopup = new PopupWithForm(popupAvatarSelector,
     console.log(values)
     api.updateAvatar(values.avatar)
         .then(res => {
-           userInformation.setUserInfo(res.name, res.about, res.avatar)
-        });
+           userInformation.setUserInfo(res.name, res.about, res.avatar);
+            avatarPopup.close();
+        })
+        .catch(err => {
+        console.log(err);
+        })
+        .finally(() => {
+            avatarPopup.renderLoading(false);
+        })
     avatarPopup.renderLoading(true);
-    avatarPopup.close();
 }
 });
 avatarPopup.setEventListeners();
 
 profileImage.addEventListener('click', () => {
     avatarPopup.open();
-    avatarPopup.renderLoading(false);
+    formValidators['avatar-adder'].disableButton();
+    formValidators['avatar-adder'].resetValidation();
 })
 
 
 const cardsDefault = new Section(
   {items: [],
-  renderer: (item) => {
-    const newCard = createCard(item, cardTemplateSelector);
-    cardsDefault.addItem(newCard);
-  }
  }, cardListSelector);
-cardsDefault.renderItems();
 
 
 
@@ -137,6 +176,9 @@ function createCard(data) {
                   card.deleteCard();
                   deletePopup.close();
               })
+              .catch(err => {
+                  console.log(err);
+              });
       })
   }, userId,
       (id) =>{
@@ -145,12 +187,18 @@ function createCard(data) {
               .then(res => {
                   card.setLikes(res.likes)
               })
+              .catch(err => {
+                  console.log(err);
+              });
       }
       else {
           api.addLike(id)
               .then(res => {
                   card.setLikes(res.likes)
               })
+              .catch(err => {
+                  console.log(err);
+              });
       }
 
       });
